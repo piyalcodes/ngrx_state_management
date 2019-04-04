@@ -1,0 +1,22 @@
+<div style="width: 100%; background-color: rgb(50, 129, 182); color: white; padding: 3px; margin: 10px;">
+  <h1> Completed Events</h1>
+</div>
+
+<div style="width: 40%">
+  <div class="content right" style="width: 75%">
+    <div class="right">
+      <ul class="EventList">
+        <li *ngFor="let eventsDataVal of eventComplete | async; let i = index">
+          <div class="left">
+            <span class="name"> {{eventsDataVal.name}} </span> <span class="url"> {{eventsDataVal.url}} </span>
+          </div>
+          <div class="right">
+            <div class="left status" (click)="completeEvent(i)">{{eventsDataVal.status}}</div>
+            <span class="close" (click)="removeEvent(i)"> X </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <a routerLink="/" routerLinkActive="active">View All Events</a>
+</div>

@@ -1,0 +1,54 @@
+<div style="width: 100%; background-color: rgb(50, 129, 182); color: white; padding: 3px; margin: 10px;">
+  <h2>Events</h2>
+</div>
+
+<div style="width: 100%">
+
+  <div class="content left" style="width: 25%">
+    <input type="text" placeholder="name" #name> <br>
+    <input type="text" placeholder="url" #url> <br>
+    <button (click)="addEvents(name.value, url.value, 'Pending')">Add Value</button>
+
+    <br />
+
+    <a routerLink="/complete" routerLinkActive="active">View All Completed</a>
+  </div>
+
+  <div class="content right" style="width: 75%">
+
+    <div class="left">
+      <h2>Pending Events</h2>
+      <ul class="EventList">
+
+        <li *ngFor="let eventsDataVal of eventPending | async; let i = index">
+
+          <div class="left">
+            <span class="name"> {{eventsDataVal.name}} </span> <span class="url"> {{eventsDataVal.url}} </span>
+          </div>
+          <div class="right">
+            <div class="left pending" (click)="completeEvent(i)">{{eventsDataVal.status}}</div>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+
+    <div class="right">
+      <h2>Complated Events</h2>
+      <ul class="EventList">
+        <li *ngFor="let eventsDataVal of eventComplete | async; let i = index">
+
+          <div class="left">
+            <span class="name"> {{eventsDataVal.name}} </span> <span class="url"> {{eventsDataVal.url}} </span>
+          </div>
+          <div class="right">
+            <div class="left status" (click)="completeEvent(i)">{{eventsDataVal.status}}</div>
+            <span class="close" (click)="removeEvent(i)"> X </span>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
